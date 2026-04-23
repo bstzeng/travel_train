@@ -4,8 +4,10 @@ import { FUEL_COST_PER_MOVE, stations } from '../data/stations.js';
 const validQuestionIds = new Set(questions.map((question) => question.id));
 const validStationIds = new Set(stations.map((station) => station.id));
 const RECENT_WINDOW = 8;
+const CATEGORY_WINDOW = 3;
 
 const uniqueIds = (items) => Array.from(new Set((items || []).filter(Boolean)));
+const getQuestionCategory = (id) => questionMap[id]?.category || null;
 
 export const pickNextQuestionId = ({ currentQuestionId = null, recentQuestionIds = [], allowedIds = null }) => {
   const pool = allowedIds && allowedIds.length
@@ -20,11 +22,28 @@ export const pickNextQuestionId = ({ currentQuestionId = null, recentQuestionIds
   }
 
   const recentSet = new Set(recentQuestionIds.slice(-RECENT_WINDOW));
-  const preferred = pool.filter(
-    (question) => question.id !== currentQuestionId && !recentSet.has(question.id)
+  const currentCategory = getQuestionCategory(currentQuestionId);
+  const recentCategories = new Set(
+    recentQuestionIds
+      .slice(-CATEGORY_WINDOW)
+      .map((id) => getQuestionCategory(id))
+      .filter(Boolean)
   );
-  const fallback = pool.filter((question) => question.id !== currentQuestionId);
-  const candidates = preferred.length ? preferred : fallback.length ? fallback : pool;
+
+  const isFreshId = (question) => question.id !== currentQuestionId && !recentSet.has(question.id);
+  const isFreshCategory = (question) =>
+    question.category !== currentCategory && !recentCategories.has(question.category);
+
+  const tiers = [
+    pool.filter((question) => isFreshId(question) && isFreshCategory(question)),
+    pool.filter((question) => isFreshId(question) && question.category !== currentCategory),
+    pool.filter((question) => isFreshId(question)),
+    pool.filter((question) => question.id !== currentQuestionId && isFreshCategory(question)),
+    pool.filter((question) => question.id !== currentQuestionId),
+    pool
+  ];
+
+  const candidates = tiers.find((tier) => tier.length) || pool;
   const picked = candidates[Math.floor(Math.random() * candidates.length)];
   return picked.id;
 };
