@@ -525,7 +525,7 @@ p {
 }
 
 .station-mark text {
-  font-size: 12px;
+  font-size: 14px;
   fill: #2d5f78;
   font-weight: 700;
   stroke: rgba(255, 255, 255, 0.92);
@@ -756,10 +756,6 @@ p {
   .status-card strong,
   .summary-block strong {
     font-size: 1.4rem;
-  }
-
-  .map-summary {
-    grid-template-columns: 1fr;
   }
 }
 

@@ -1,5 +1,4 @@
 import { html } from '../utils/html.js';
-import { BadgeShelf } from './BadgeShelf.js';
 import { MapPanel } from './MapPanel.js';
 import { QuestionCard } from './QuestionCard.js';
 
@@ -54,6 +53,5 @@ export const GameScreen = ({
       </div>
     </div>
 
-    <${BadgeShelf} stations=${stations} badges=${state.badges} />
   </section>
 `;

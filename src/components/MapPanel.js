@@ -8,7 +8,6 @@ export const MapPanel = ({
   currentStationIndex,
   fuel,
   streak,
-  badges,
   isReview,
   reviewRemainingCount,
   canDepart,
@@ -52,13 +51,19 @@ export const MapPanel = ({
             <span className="status-label">連續答對</span>
             <strong>${streak}</strong>
           </article>
+          <article className="status-card current-place">
+            <span className="status-label">目前位置</span>
+            <strong>${currentStation.name}</strong>
+            <span>${currentStation.feature}</span>
+          </article>
           <article className="status-card next">
             <span className="status-label">${isReview ? '錯題剩餘' : '下一站'}</span>
             <strong>${isReview ? `${reviewRemainingCount} 題` : nextStation.name}</strong>
           </article>
-          <article className="status-card badges">
-            <span className="status-label">徽章</span>
-            <strong>${badges.length}</strong>
+          <article className="status-card depart-rule">
+            <span className="status-label">${isReview ? '複習任務' : '出發條件'}</span>
+            <strong>${isReview ? '把錯題再練熟' : `消耗 ${FUEL_COST_PER_MOVE} 燃料前進`}</strong>
+            <span>${isReview ? '全部答對就完成複習' : canDepart ? '火車準備出發' : '還差一些燃料喔'}</span>
           </article>
         </div>
 
@@ -172,19 +177,6 @@ export const MapPanel = ({
                 </text>
               </g>
             </svg>
-          </div>
-
-          <div className="map-summary">
-            <div className="summary-block">
-              <span className="status-label">目前位置</span>
-              <strong>${currentStation.name}</strong>
-              <span>${currentStation.feature}</span>
-            </div>
-            <div className="summary-block">
-              <span className="status-label">${isReview ? '複習任務' : '出發條件'}</span>
-              <strong>${isReview ? '把錯題再練熟' : `消耗 ${FUEL_COST_PER_MOVE} 燃料前進`}</strong>
-              <span>${isReview ? '全部答對就完成複習' : canDepart ? '火車準備出發' : '還差一些燃料喔'}</span>
-            </div>
           </div>
         </div>
       </div>
