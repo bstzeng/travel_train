@@ -210,6 +210,19 @@ export const stations = [
     labelAnchor: 'start'
   },
   {
+    id: 'luodong',
+    name: '羅東',
+    shortName: '羅東',
+    county: '宜蘭縣',
+    feature: '夜市閃亮站',
+    icon: '🏮',
+    badgeName: '夜市點點章',
+    color: '#ffafcc',
+    position: { x: 221, y: 258 },
+    labelOffset: { x: 16, y: 10 },
+    labelAnchor: 'start'
+  },
+  {
     id: 'yilan',
     name: '宜蘭',
     shortName: '宜蘭',
@@ -223,16 +236,16 @@ export const stations = [
     labelAnchor: 'start'
   },
   {
-    id: 'luodong',
-    name: '羅東',
-    shortName: '羅東',
-    county: '宜蘭縣',
-    feature: '夜市閃亮站',
+    id: 'pingxi',
+    name: '平溪',
+    shortName: '平溪',
+    county: '新北市',
+    feature: '天燈願望站',
     icon: '🏮',
-    badgeName: '夜市點點章',
-    color: '#ffafcc',
-    position: { x: 221, y: 258 },
-    labelOffset: { x: 16, y: 10 },
+    badgeName: '天燈願望章',
+    color: '#ff9770',
+    position: { x: 216, y: 128 },
+    labelOffset: { x: 16, y: 8 },
     labelAnchor: 'start'
   },
   {
@@ -260,19 +273,6 @@ export const stations = [
     position: { x: 191, y: 112 },
     labelOffset: { x: -48, y: 8 },
     labelAnchor: 'end'
-  },
-  {
-    id: 'pingxi',
-    name: '平溪',
-    shortName: '平溪',
-    county: '新北市',
-    feature: '天燈願望站',
-    icon: '🏮',
-    badgeName: '天燈願望章',
-    color: '#ff9770',
-    position: { x: 216, y: 128 },
-    labelOffset: { x: 16, y: 8 },
-    labelAnchor: 'start'
   },
   {
     id: 'tamsui',
